@@ -1,0 +1,2 @@
+# succubot
+custom bot
