@@ -154,12 +154,15 @@ bot.on("message", async message => {
 
     if (cmd === `${prefix}help`) {
         return message.channel.send("**Available Commands**\n" +
-        "\`~makerole (role name)\` Create a role of the given name; Admin only. \n" +
-        "\`~give @member (role name)\` Give @member the named role; Admin only. \n" + 
-        "\`~add (role name)\` Add role to yourself. \n" +
-        "\`~remove (role name)\` Remove role from yourself. \n" +
+        "\`~add (role name)\` Add a role to yourself. \n" +
+        "\`~remove (role name)\` Remove a role from yourself. \n" +
         "\`~lpt\` Get a ~~questionably ethical~~ life pro tip. \n" +
-        "\`~slide\` Let me *sliiiiide* into your dms bb :wink: ");
+        "\`~slide\` Let me *sliiiiide* into your dms bb :wink: \n" +
+        "\`~level\` Check your current level and XP \n" +
+        "\`~f\` Press f to pay respects \n" +
+        "\`~cum @member\` Nut on @member \n\n" +
+        "\`~makerole (role name)\` Create a role of the given name; Admin only. \n" +
+        "\`~give @member (role name)\` Give @member the named role; Admin only. \n");
     }
 
     if (cmd === `${prefix}cum`) {
@@ -186,7 +189,7 @@ bot.on("message", async message => {
     }
 */
     // bot info
-    if (cmd === `${prefix}binfo`) {
+ /*   if (cmd === `${prefix}binfo`) {
         let bicon = bot.user.displayAvatarURL;
         let botembed = new Discord.RichEmbed()
         .setDescription("Bot Information")
@@ -195,7 +198,7 @@ bot.on("message", async message => {
         .addField("Bot Name", bot.user.username)
 
         return message.channel.send(botembed);
-    }
+    }*/
 
     if (cmd === `${prefix}f`) {
         const rand = Math.random();
