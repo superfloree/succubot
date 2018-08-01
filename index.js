@@ -4,6 +4,7 @@ const fs = require("fs");
 let xp = require("./xp.json");
 let cooldown = new Set();
 let cdsecs = 60;
+let peach = "#ffcb72";
 
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
@@ -31,7 +32,7 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-    if (message.channel.id == 454679280694198272 && message.author.id != 461702824779186176 &&  !cooldown.has(message.author.id)) {
+    if (message.author.id != 461702824779186176 &&  !cooldown.has(message.author.id)) {
     cooldown.add(message.author.id);
     let xpadd = Math.floor(Math.random() * 10) + 15;
 
@@ -44,34 +45,54 @@ bot.on("message", async message => {
     let curxp = xp[message.author.id].xp;
     let curlvl = xp[message.author.id].level;
     let nxtlvl = 5 * Math.pow(curlvl, 2) + 50 * curlvl + 100;
-    console.log(nxtlvl);
+    //console.log(nxtlvl);
     xp[message.author.id].xp = curxp + xpadd;
     if (nxtlvl <= xp[message.author.id].xp) {
-        console.log("in");
+    //    console.log("in");
         xp[message.author.id].level = curlvl + 1;
-        message.channel.send(`Oh shit waddup! <@${message.author.id}> just got to level ${xp[message.author.id].level}!`);
+        const lvlup = [
+            `<@${message.author.id}>, you just reached level ${xp[message.author.id].level}! Congrats cutie :heart:`,
+            `Heehee~ <@${message.author.id}>, you're at level ${xp[message.author.id].level} now! :blush:`,
+            `<@${message.author.id}>, you just hit level ${xp[message.author.id].level}! :open_mouth:`,
+            `Hey <@${message.author.id}>, wanna hear a secret? You're at level ${xp[message.author.id].level} now :wink:`,
+            `Wow <@${message.author.id}>, you just got to level ${xp[message.author.id].level}! Good job boo~ :kissing_heart:`
+        ]
+        let rand = Math.floor(Math.random() * lvlup.length);
+        message.channel.send(lvlup[rand]);
         curlvl = xp[message.author.id].level;
         xp[message.author.id].xp = 0;
 
         switch (true) {
             case (curlvl == 25) :
-                if (!message.member.roles.has('471095203302866964'))
+                if (!message.member.roles.has('471095203302866964')) {
                     await(message.member.addRole('471095203302866964'));
+                    message.channel.send(`Wow <@${message.author.id}>, you managed to become a Cubus! Congratulations :heart_eyes:`);
+                }
             case (curlvl == 20) :
-                if (!message.member.roles.has('471100485755994112'))
+                if (!message.member.roles.has('471100485755994112')) {
                     await(message.member.addRole('471100485755994112'));
+                    message.channel.send(`Oooo~ <@${message.author.id}>, looks like you're a Demon now :kissing:`); 
+                }
             case (curlvl == 15) :
-                if (!message.member.roles.has('471101920916799488'))
+                if (!message.member.roles.has('471101920916799488')) {
                     await(message.member.addRole('471101920916799488'));
+                    message.channel.send(`Whew <@${message.author.id}>, guess who just became a Fiend? :smirk:`);
+                }
             case (curlvl == 10) :
-                if (!message.member.roles.has('472868826195820546'))
+                if (!message.member.roles.has('472868826195820546')) {
                     await(message.member.addRole('472868826195820546'));
+                    message.channel.send(`Heehee <@${message.author.id}>, you're an Imp now! :stuck_out_tongue_closed_eyes:`);
+                }
             case (curlvl == 5) :
-                if (!message.member.roles.has('472868899390750720'))
-                    await(message.member.addRole('472868899390750720'));    
+                if (!message.member.roles.has('472868899390750720')) {
+                    await(message.member.addRole('472868899390750720'));
+                    message.channel.send(`Whoa <@${message.author.id}>, you just graduated to Cultist! :flushed:`);   
+                }
             case (curlvl == 1) :
-                if (!message.member.roles.has('468471411741163520'))
+                if (!message.member.roles.has('468471411741163520')) {
                     await(message.member.addRole('468471411741163520'));
+                    message.channel.send(`Hey <@${message.author.id}>, look who's a Sinner now :stuck_out_tongue:`);
+                }
         }
 
     }
@@ -104,6 +125,31 @@ bot.on("message", async message => {
     // ping command
     if (cmd === `${prefix}ping`) {
         return message.channel.send("pong");
+    }
+
+    // display level
+    if (cmd == `${prefix}level`) {
+        let curxp = xp[message.author.id].xp;
+        let curlvl = xp[message.author.id].level;
+        let nxtlvl = 5 * Math.pow(curlvl, 2) + 50 * curlvl + 100;
+
+        let rank = "";
+        if (curlvl < 1) rank = "Member";
+        else if (curlvl < 5) rank = "Sinner";
+        else if (curlvl < 10) rank = "Cultist";
+        else if (curlvl < 15) rank = "Imp";
+        else if (curlvl < 20) rank = "Fiend";
+        else if (curlvl < 25) rank = "Demon";
+        else if (curlvl >= 25) rank = "Succubi/Incubi";
+        else rank = "N/A";
+
+        let lembed = new Discord.RichEmbed()
+            .setDescription(rank + " " + message.author.username)
+            .setColor(peach)
+            .setThumbnail(message.author.avatarURL)
+            .addField("Level " + curlvl, curxp + "/" + nxtlvl);
+
+        return message.channel.send(lembed);
     }
 
     if (cmd === `${prefix}help`) {
@@ -146,7 +192,7 @@ bot.on("message", async message => {
         .setDescription("Bot Information")
         .setColor("#95f442")
         .setThumbnail(bicon)
-        .addField("Bot Name", bot.user.username);
+        .addField("Bot Name", bot.user.username)
 
         return message.channel.send(botembed);
     }
