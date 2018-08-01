@@ -158,9 +158,9 @@ bot.on("message", async message => {
         "\`~remove (role name)\` Remove a role from yourself. \n" +
         "\`~lpt\` Get a ~~questionably ethical~~ life pro tip. \n" +
         "\`~slide\` Let me *sliiiiide* into your dms bb :wink: \n" +
-        "\`~level\` Check your current level and XP \n" +
-        "\`~f\` Press f to pay respects \n" +
-        "\`~cum @member\` Nut on @member \n\n" +
+        "\`~level\` Check your current level and XP. \n" +
+        "\`~f\` Press f to pay respects. \n" +
+        "\`~cum @member\` Nut on @member. \n\n" +
         "\`~makerole (role name)\` Create a role of the given name; Admin only. \n" +
         "\`~give @member (role name)\` Give @member the named role; Admin only. \n");
     }
