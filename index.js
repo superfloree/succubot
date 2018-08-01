@@ -32,7 +32,7 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-    if (message.author.id != 461702824779186176 &&  !cooldown.has(message.author.id)) {
+    if (message.channel.id != 454679280694198272 && message.author.id != 461702824779186176 &&  !cooldown.has(message.author.id)) {
     cooldown.add(message.author.id);
     let xpadd = Math.floor(Math.random() * 10) + 15;
 
@@ -58,7 +58,7 @@ bot.on("message", async message => {
             `Wow <@${message.author.id}>, you just got to level ${xp[message.author.id].level}! Good job boo~ :kissing_heart:`
         ]
         let rand = Math.floor(Math.random() * lvlup.length);
-        message.channel.send(lvlup[rand]);
+        bot.channels.get('447890081798291466').send(lvlup[rand]);
         curlvl = xp[message.author.id].level;
         xp[message.author.id].xp = 0;
 
@@ -66,32 +66,32 @@ bot.on("message", async message => {
             case (curlvl == 25) :
                 if (!message.member.roles.has('471095203302866964')) {
                     await(message.member.addRole('471095203302866964'));
-                    message.channel.send(`Wow <@${message.author.id}>, you managed to become a Cubus! Congratulations :heart_eyes:`);
+                    bot.channels.get('447890081798291466').send(`Wow <@${message.author.id}>, you managed to become a Cubus! Congratulations :heart_eyes:`);
                 }
             case (curlvl == 20) :
                 if (!message.member.roles.has('471100485755994112')) {
                     await(message.member.addRole('471100485755994112'));
-                    message.channel.send(`Oooo~ <@${message.author.id}>, looks like you're a Demon now :kissing:`); 
+                    bot.channels.get('447890081798291466').send(`Oooo~ <@${message.author.id}>, looks like you're a Demon now :kissing:`); 
                 }
             case (curlvl == 15) :
                 if (!message.member.roles.has('471101920916799488')) {
                     await(message.member.addRole('471101920916799488'));
-                    message.channel.send(`Whew <@${message.author.id}>, guess who just became a Fiend? :smirk:`);
+                    bot.channels.get('447890081798291466').send(`Whew <@${message.author.id}>, guess who just became a Fiend? :smirk:`);
                 }
             case (curlvl == 10) :
                 if (!message.member.roles.has('472868826195820546')) {
                     await(message.member.addRole('472868826195820546'));
-                    message.channel.send(`Heehee <@${message.author.id}>, you're an Imp now! :stuck_out_tongue_closed_eyes:`);
+                    bot.channels.get('447890081798291466').send(`Heehee <@${message.author.id}>, you're an Imp now! :stuck_out_tongue_closed_eyes:`);
                 }
             case (curlvl == 5) :
                 if (!message.member.roles.has('472868899390750720')) {
                     await(message.member.addRole('472868899390750720'));
-                    message.channel.send(`Whoa <@${message.author.id}>, you just graduated to Cultist! :flushed:`);   
+                    bot.channels.get('447890081798291466').send(`Whoa <@${message.author.id}>, you just graduated to Cultist! :flushed:`);   
                 }
             case (curlvl == 1) :
                 if (!message.member.roles.has('468471411741163520')) {
                     await(message.member.addRole('468471411741163520'));
-                    message.channel.send(`Hey <@${message.author.id}>, look who's a Sinner now :stuck_out_tongue:`);
+                    bot.channels.get('447890081798291466').send(`Hey <@${message.author.id}>, look who's a Sinner now :stuck_out_tongue:`);
                 }
         }
 
