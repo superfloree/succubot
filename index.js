@@ -111,7 +111,7 @@ bot.on("message", async message => {
     }
 
     if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
+    if (message.channel.type === "dm" || message.channel.id == 454679280694198272) return;
 
     let prefix = botconfig.prefix;
     // split message by spaces
