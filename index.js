@@ -1,7 +1,7 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
-let xp = require("./xp.json");
+let xp = require(__dirname + "/xp.json");
 let cooldown = new Set();
 let cdsecs = 60;
 let peach = "#ffcb72";
