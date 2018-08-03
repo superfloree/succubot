@@ -1,7 +1,7 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
-let xp = require("./xp.json");
+let xp = require(__dirname + "/xp.json");
 let cooldown = new Set();
 let cdsecs = 60;
 let peach = "#ffcb72";
@@ -29,6 +29,10 @@ bot.on("ready", async () => {
     console.log(`${bot.user.username} is online.`);
     bot.user.setActivity("~help for help", {type: "PLAYING"});
 });
+//447884140583452697
+bot.on('guildMemberAdd', member => {
+    member.guild.channels.get('447884140583452697').send(`Ooh~ We have a new person! Welcome to the sin bin ${member.user}! Please read the rules in <#447889773902823424> to know what's allowed around here; we're not strict, but if you act up I might have to punish you :wink: Once you do you can head over to <#447890081798291466> and give yourself some roles! A list is in the pinned messages and all you need to do is use my ~add command and I'll give it right to you :3 If you wanna check out my other commands you can also just type ~help to bring up the help menu <:blobuwu:468996466313265163>\nI really hope you enjoy your time here! <:blobkissheart:468995624092827658>`);
+})
 
 bot.on("message", async message => {
     if (message.channel.id != 454679280694198272 && message.author.id != 461702824779186176 && message.author.id != 155149108183695360 && !cooldown.has(message.author.id)) {
@@ -167,7 +171,7 @@ bot.on("message", async message => {
     if (cmd === `${prefix}cum`) {
         let cMember = message.guild.member(message.mentions.users.first());
         if (!cMember) return message.reply("Enter a person to NUT over.");
-        return message.channel.send(`${message.author} just nutted all over ${cMember} <:nut:431545463863246849> <:gayjizz:462297390708162560>`);
+        return message.channel.send(`${message.author} just nutted all over ${cMember} <:gayjizz:462297390708162560>`);
     }
 /*
     // server info
