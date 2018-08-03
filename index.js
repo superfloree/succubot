@@ -35,7 +35,7 @@ bot.on('guildMemberAdd', member => {
 })
 
 bot.on("message", async message => {
-    if (message.channel.id != 454679280694198272 && message.author.id != 461702824779186176 && message.author.id != 155149108183695360 && !cooldown.has(message.author.id)) {
+    if (message.channel.id != 454679280694198272 && !message.author.bot /*message.author.id != 461702824779186176 && message.author.id != 155149108183695360*/ && !cooldown.has(message.author.id)) {
     cooldown.add(message.author.id);
     let xpadd = Math.floor(Math.random() * 10) + 15;
 
