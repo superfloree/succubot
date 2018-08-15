@@ -100,7 +100,7 @@ bot.on("message", async message => {
 
     }
 
-    fs.writeFile("./xp.json",JSON.stringify(xp), err => {
+    fs.writeFile(__dirname + "/xp.json",JSON.stringify(xp), err => {
         if (err) console.log(err)
     });
 
